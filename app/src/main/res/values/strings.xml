@@ -74,4 +74,7 @@
     <string name="optional_description">Optional description</string>
     <string name="error_empty_name_city">A name and a city are mandatory</string>
     <string name="addess_unspecified">Unspecified Address</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="menu_tools">Tools</string>
 </resources>
