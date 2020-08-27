@@ -80,7 +80,7 @@ public class RequestDescriptionActivity extends AppCompatActivity {
     public void toggleInfo(View view){
         toggleableLL.setVisibility(medicineDescriptionShown ? View.GONE : View.VISIBLE);
         toggleInfoIV.setImageResource(medicineDescriptionShown ?
-                R.drawable.ic_drop_up_black : R.drawable.ic_drop_down_black);
+                R.drawable.ic_drop_down_black : R.drawable.ic_drop_up_black);
         medicineDescriptionShown = !medicineDescriptionShown;
     }
     public void getRequestData(){

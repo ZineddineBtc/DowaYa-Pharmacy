@@ -79,4 +79,5 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_requests">Requests</string>
     <string name="requesting_users">Requesting Users:</string>
+    <string name="users">Users</string>
 </resources>

@@ -16,8 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dowaya_pharmacy.R;
 import com.example.dowaya_pharmacy.adapters.RequestHistoryAdapter;
+import com.example.dowaya_pharmacy.adapters.UserHistoryAdapter;
 import com.example.dowaya_pharmacy.daos.RequestHistoryDAO;
+import com.example.dowaya_pharmacy.daos.UserHistoryDAO;
 import com.example.dowaya_pharmacy.models.Medicine;
+import com.example.dowaya_pharmacy.models.User;
 
 import java.util.ArrayList;
 
@@ -25,10 +28,10 @@ public class HistoryFragment extends Fragment {
 
     private View fragmentView;
     private Context context;
-    private TextView requestTV;
-    private RecyclerView requestRV;
-    private RequestHistoryAdapter requestAdapter;
+    private TextView requestTV, userTV, emptyListTV;
+    private RecyclerView requestRV, userRV;
     private ArrayList<Medicine> requestList;
+    private ArrayList<User> userList;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,25 +40,60 @@ public class HistoryFragment extends Fragment {
         findViewsByIds();
         initializeLists();
         setRecyclerViews();
-
+        tabRequest();
+        setClickListeners();
         return fragmentView;
     }
     private void findViewsByIds(){
         requestTV = fragmentView.findViewById(R.id.requestTV);
-        requestTV = fragmentView.findViewById(R.id.requestTV);
         requestRV = fragmentView.findViewById(R.id.requestRV);
+        userTV = fragmentView.findViewById(R.id.userTV);
+        userRV = fragmentView.findViewById(R.id.userRV);
+        emptyListTV = fragmentView.findViewById(R.id.emptyListTV);
     }
     private void initializeLists(){
         requestList = new RequestHistoryDAO(context).getAllRequestHistory();
-        Toast.makeText(context, String.valueOf(requestList.size()), Toast.LENGTH_SHORT).show();
+        userList = new UserHistoryDAO(context).getAllUserHistory();
     }
     private void setRecyclerViews(){
-        requestAdapter = new RequestHistoryAdapter(context, requestList);
+        RequestHistoryAdapter requestAdapter = new RequestHistoryAdapter(context, requestList);
         requestRV.setLayoutManager(new LinearLayoutManager(context,
                 LinearLayoutManager.VERTICAL, false));
         requestRV.setAdapter(requestAdapter);
-    }
 
+        UserHistoryAdapter userAdapter = new UserHistoryAdapter(context, userList);
+        userRV.setLayoutManager(new LinearLayoutManager(context,
+                LinearLayoutManager.VERTICAL, false));
+        userRV.setAdapter(userAdapter);
+    }
+    private void tabRequest(){
+        requestRV.setVisibility(requestList.isEmpty() ? View.GONE : View.VISIBLE);
+        emptyListTV.setVisibility(requestList.isEmpty() ? View.VISIBLE : View.GONE);
+        userRV.setVisibility(View.GONE);
+        requestTV.setTextColor(context.getColor(R.color.green));
+        userTV.setTextColor(context.getColor(R.color.dark_grey));
+    }
+    private void tabUser(){
+        userRV.setVisibility(requestList.isEmpty() ? View.GONE : View.VISIBLE);
+        emptyListTV.setVisibility(requestList.isEmpty() ? View.VISIBLE : View.GONE);
+        requestRV.setVisibility(View.GONE);
+        userTV.setTextColor(context.getColor(R.color.green));
+        requestTV.setTextColor(context.getColor(R.color.dark_grey));
+    }
+    private void setClickListeners(){
+        requestTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tabRequest();
+            }
+        });
+        userTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tabUser();
+            }
+        });
+    }
 }
 
 

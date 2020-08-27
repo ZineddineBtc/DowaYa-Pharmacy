@@ -25,7 +25,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.2"
+                android:layout_weight="0.3"
                 android:gravity="center_vertical"
                 android:text="@string/name"
                 android:textColor="#000000" />
@@ -34,7 +34,7 @@
                 android:id="@+id/nameTV"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.7"
+                android:layout_weight="0.6"
                 android:gravity="center_vertical"
                 android:text="@string/medicine_name_example"
                 android:textColor="#000000"
@@ -65,8 +65,8 @@
 
                 <TextView
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
+                    android:layout_height="15dp"
+                    android:layout_weight="0.3"
                     android:gravity="center_vertical"
                     android:text="@string/description"
                     android:textColor="#000000" />
@@ -75,7 +75,7 @@
                     android:id="@+id/descriptionTV"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.8"
+                    android:layout_weight="0.7"
                     android:text="@string/random_description"
                     android:textColor="#000000" />
             </LinearLayout>
@@ -89,7 +89,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
+                    android:layout_weight="0.3"
                     android:gravity="center_vertical"
                     android:text="@string/dose"
                     android:textColor="#000000" />
@@ -98,7 +98,7 @@
                     android:id="@+id/doseTV"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.8"
+                    android:layout_weight="0.7"
                     android:text="@string/random_dose"
                     android:textColor="#000000" />
             </LinearLayout>
@@ -116,6 +116,7 @@
             android:layout_height="match_parent" />
     </LinearLayout>
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/shadeLL"
         android:onClick="hideDescription"
         android:orientation="horizontal"
@@ -128,6 +129,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/userDescriptionLL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
