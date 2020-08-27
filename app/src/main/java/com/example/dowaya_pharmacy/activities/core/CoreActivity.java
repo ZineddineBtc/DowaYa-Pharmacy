@@ -8,10 +8,6 @@ import android.os.Bundle;
 
 import com.example.dowaya_pharmacy.R;
 import com.example.dowaya_pharmacy.StaticClass;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -28,7 +24,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -118,8 +113,8 @@ public class CoreActivity extends AppCompatActivity {
     public void setUpNavigation(){
         navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_settings)
+                R.id.nav_requests, R.id.nav_gallery, R.id.nav_slideshow,
+                R.id.nav_history, R.id.nav_share, R.id.nav_settings)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -132,4 +127,9 @@ public class CoreActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
 }

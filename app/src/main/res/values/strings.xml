@@ -77,4 +77,6 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="menu_tools">Tools</string>
+    <string name="menu_requests">Requests</string>
+    <string name="requesting_users">Requesting Users:</string>
 </resources>

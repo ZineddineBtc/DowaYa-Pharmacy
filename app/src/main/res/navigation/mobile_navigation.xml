@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_requests">
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.example.dowaya_pharmacy.activities.core.fragments.HomeFragment"
+        android:id="@+id/nav_requests"
+        android:name="com.example.dowaya_pharmacy.activities.core.fragments.RequestListFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_request_list" />
 
     <fragment
         android:id="@+id/nav_gallery"
@@ -24,10 +24,10 @@
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
-        android:id="@+id/nav_tools"
-        android:name="com.example.dowaya_pharmacy.activities.core.fragments.ToolsFragment"
+        android:id="@+id/nav_history"
+        android:name="com.example.dowaya_pharmacy.activities.core.fragments.HistoryFragment"
         android:label="@string/menu_tools"
-        tools:layout="@layout/fragment_tools" />
+        tools:layout="@layout/fragment_history" />
 
     <fragment
         android:id="@+id/nav_share"
