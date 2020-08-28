@@ -70,15 +70,19 @@ public class HistoryFragment extends Fragment {
         requestRV.setVisibility(requestList.isEmpty() ? View.GONE : View.VISIBLE);
         emptyListTV.setVisibility(requestList.isEmpty() ? View.VISIBLE : View.GONE);
         userRV.setVisibility(View.GONE);
-        requestTV.setTextColor(context.getColor(R.color.green));
+        requestTV.setTextColor(context.getColor(R.color.white));
+        requestTV.setBackgroundColor(context.getColor(R.color.green));
         userTV.setTextColor(context.getColor(R.color.dark_grey));
+        userTV.setBackgroundColor(context.getColor(R.color.white));
     }
     private void tabUser(){
         userRV.setVisibility(requestList.isEmpty() ? View.GONE : View.VISIBLE);
         emptyListTV.setVisibility(requestList.isEmpty() ? View.VISIBLE : View.GONE);
         requestRV.setVisibility(View.GONE);
-        userTV.setTextColor(context.getColor(R.color.green));
+        userTV.setTextColor(context.getColor(R.color.white));
+        userTV.setBackgroundColor(context.getColor(R.color.green));
         requestTV.setTextColor(context.getColor(R.color.dark_grey));
+        requestTV.setBackgroundColor(context.getColor(R.color.white));
     }
     private void setClickListeners(){
         requestTV.setOnClickListener(new View.OnClickListener() {

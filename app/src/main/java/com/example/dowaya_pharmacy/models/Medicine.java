@@ -3,6 +3,7 @@ package com.example.dowaya_pharmacy.models;
 public class Medicine {
     private String id, name, dose, photo, priceRange, description,
             searchHistoryTime, requestTime, postTime, postAddress;
+    private boolean isAvailable;
 
     public Medicine(){}
 
@@ -21,6 +22,14 @@ public class Medicine {
         this.name = name;
         this.description = description;
         this.priceRange = priceRange;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
     }
 
     public String getName() {

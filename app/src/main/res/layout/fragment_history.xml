@@ -9,15 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="5dp"
+        android:layout_marginBottom="10dp">
         <TextView
             android:id="@+id/requestTV"
             android:layout_width="0dp"
             android:layout_weight="0.25"
             android:layout_height="wrap_content"
             android:text="@string/requests"
-            android:textColor="@color/green"
-            android:gravity="center"/>
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@color/green"
+            android:padding="5dp"/>
         <TextView
             android:id="@+id/userTV"
             android:layout_width="0dp"
@@ -25,21 +28,24 @@
             android:layout_height="wrap_content"
             android:text="@string/users"
             android:textColor="@color/dark_grey"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:padding="5dp"/>
         <TextView
             android:layout_width="0dp"
             android:layout_weight="0.25"
             android:layout_height="wrap_content"
             android:text="@string/requests"
             android:textColor="@color/dark_grey"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:padding="5dp"/>
         <TextView
             android:layout_width="0dp"
             android:layout_weight="0.25"
             android:layout_height="wrap_content"
             android:text="@string/requests"
             android:textColor="@color/dark_grey"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:padding="5dp"/>
     </LinearLayout>
     <TextView
         android:id="@+id/emptyListTV"

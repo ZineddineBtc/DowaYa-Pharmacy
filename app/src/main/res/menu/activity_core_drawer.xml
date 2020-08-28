@@ -9,9 +9,9 @@
             android:icon="@drawable/ic_list_black"
             android:title="@string/menu_requests" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/nav_medicine_list"
+            android:icon="@drawable/ic_lens_black_24dp"
+            android:title="@string/menu_medicines" />
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/ic_menu_slideshow"

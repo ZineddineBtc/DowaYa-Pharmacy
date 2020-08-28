@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_request_list" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.dowaya_pharmacy.activities.core.fragments.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_medicine_list"
+        android:name="com.example.dowaya_pharmacy.activities.core.fragments.MedicineListFragment"
+        android:label="@string/menu_medicines"
+        tools:layout="@layout/fragment_medicine_list" />
 
     <fragment
         android:id="@+id/nav_slideshow"

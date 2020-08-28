@@ -113,7 +113,7 @@ public class CoreActivity extends AppCompatActivity {
     public void setUpNavigation(){
         navigationView = findViewById(R.id.nav_view);
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_requests, R.id.nav_gallery, R.id.nav_slideshow,
+                R.id.nav_requests, R.id.nav_medicine_list, R.id.nav_slideshow,
                 R.id.nav_history, R.id.nav_share, R.id.nav_settings)
                 .setDrawerLayout(drawer)
                 .build();
