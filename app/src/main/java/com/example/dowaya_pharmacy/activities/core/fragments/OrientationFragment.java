@@ -10,13 +10,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.dowaya_pharmacy.R;
 
-public class ShareFragment extends Fragment {
+public class OrientationFragment extends Fragment {
 
     private View fragmentView;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        fragmentView = inflater.inflate(R.layout.fragment_share, container, false);
+        fragmentView = inflater.inflate(R.layout.fragment_orientation, container, false);
 
 
         return fragmentView;

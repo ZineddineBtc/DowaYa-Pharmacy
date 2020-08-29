@@ -2,13 +2,15 @@ package com.example.dowaya_pharmacy.activities.core.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
@@ -19,11 +21,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dowaya_pharmacy.R;
 import com.example.dowaya_pharmacy.StaticClass;
-import com.example.dowaya_pharmacy.activities.core.CoreActivity;
+import com.example.dowaya_pharmacy.activities.core.CreateMedicineActivity;
 import com.example.dowaya_pharmacy.adapters.MedicineAdapter;
 import com.example.dowaya_pharmacy.models.Medicine;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -48,6 +49,7 @@ public class MedicineListFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.fragment_medicine_list, container, false);
         context = fragmentView.getContext();
+        setHasOptionsMenu(true);
         database = FirebaseFirestore.getInstance();
         SharedPreferences sharedPreferences = context.getSharedPreferences(StaticClass.SHARED_PREFERENCES, Context.MODE_PRIVATE);
         storeReference = database.collection("stores")
@@ -106,6 +108,18 @@ public class MedicineListFragment extends Fragment {
                         progressDialog.dismiss();
                     }
                 });
+    }
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_create_medicine, menu);
+        super.onCreateOptionsMenu(menu,inflater);
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.create_medicine){
+            startActivity(new Intent(fragmentView.getContext(), CreateMedicineActivity.class));
+        }
+        return false;
     }
 }
 

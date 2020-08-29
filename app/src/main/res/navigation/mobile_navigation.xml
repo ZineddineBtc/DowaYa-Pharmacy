@@ -26,14 +26,14 @@
     <fragment
         android:id="@+id/nav_history"
         android:name="com.example.dowaya_pharmacy.activities.core.fragments.HistoryFragment"
-        android:label="@string/menu_tools"
+        android:label="@string/menu_history"
         tools:layout="@layout/fragment_history" />
 
     <fragment
-        android:id="@+id/nav_share"
-        android:name="com.example.dowaya_pharmacy.activities.core.fragments.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
+        android:id="@+id/nav_orientation"
+        android:name="com.example.dowaya_pharmacy.activities.core.fragments.OrientationFragment"
+        android:label="@string/menu_orientation"
+        tools:layout="@layout/fragment_orientation" />
 
     <fragment
         android:id="@+id/nav_settings"
