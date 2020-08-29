@@ -47,6 +47,11 @@
             android:gravity="center"
             android:padding="5dp"/>
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/white_background_border"
+        android:layout_marginBottom="10dp"/>
     <TextView
         android:id="@+id/emptyListTV"
         android:visibility="gone"

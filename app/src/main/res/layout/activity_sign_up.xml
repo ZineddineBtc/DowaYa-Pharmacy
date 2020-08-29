@@ -9,16 +9,16 @@
 
     <TextView
         android:id="@+id/errorTV"
-        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:padding="5dp"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:textColor="#ffffff"
         android:background="#EE0000"
         android:text="ERROR"
         android:textStyle="bold"
         android:gravity="center"
+        android:elevation="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
@@ -47,7 +47,7 @@
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/ic_map_green"
+        android:src="@drawable/logo"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

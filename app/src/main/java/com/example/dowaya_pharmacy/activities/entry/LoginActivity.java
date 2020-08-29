@@ -138,4 +138,8 @@ public class LoginActivity extends AppCompatActivity {
         }, 1500);
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(), SlideshowActivity.class));
+    }
 }
