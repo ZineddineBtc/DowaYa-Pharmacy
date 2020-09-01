@@ -3,6 +3,8 @@ package com.example.dowaya_pharmacy.activities.core;
 import android.Manifest;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -24,8 +26,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.provider.MediaStore;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.IOException;
 
 public class CoreActivity extends AppCompatActivity {
 
@@ -93,7 +99,6 @@ public class CoreActivity extends AppCompatActivity {
         userEmailTV = navigationView.getHeaderView(0).findViewById(R.id.userEmailTV);
         userPhoneTV = navigationView.getHeaderView(0).findViewById(R.id.userPhoneTV);
         sharedPreferences = getSharedPreferences(StaticClass.SHARED_PREFERENCES, MODE_PRIVATE);
-        /*
         photoUri = sharedPreferences.getString(StaticClass.PHOTO, "");
         if(!photoUri.isEmpty()){
             Bitmap imageBitmap = null;
@@ -105,7 +110,7 @@ public class CoreActivity extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
             }
             userPhotoIV.setImageBitmap(imageBitmap);
-        }*/
+        }
         userNameTV.setText(sharedPreferences.getString(StaticClass.NAME, "no name"));
         userEmailTV.setText(sharedPreferences.getString(StaticClass.EMAIL, "no email"));
         userPhoneTV.setText(sharedPreferences.getString(StaticClass.PHONE, "no phone number"));

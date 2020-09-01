@@ -38,7 +38,7 @@ import java.util.Objects;
 public class RequestDescriptionActivity extends AppCompatActivity {
 
     LinearLayout toggleableLL, shadeLL, userDescriptionLL;
-    TextView nameTV, descriptionTV, doseTV, usernameTV, emailTV, phoneTV, addressTV, cityTV;
+    TextView nameTV, descriptionTV, doseTV, usernameTV, emailTV, phoneTV, addressTV;
     ImageView toggleInfoIV;
     ListView requestLV;
     ArrayAdapter adapter;

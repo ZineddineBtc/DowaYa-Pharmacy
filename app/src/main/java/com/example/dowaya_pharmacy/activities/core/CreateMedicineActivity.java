@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -26,9 +29,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -36,12 +38,11 @@ import java.util.Map;
 public class CreateMedicineActivity extends AppCompatActivity {
 
     private SharedPreferences sharedPreferences;
-    private ImageView photoIV, medicineIV;
-    private TextView usernameTV, emailTV, phoneTV, clearTV, errorTV;
+    private ImageView photoIV;
+    private TextView usernameTV, emailTV, phoneTV, errorTV;
     private EditText medicineNameET, medicineDescriptionET,
             medicineDoseET, minPriceET, maxPriceET;
-    private String medicinePhotoString=null, medicineName, email, priceRange;
-    private CreatedMedicineHistoryDAO createdMedicineHistoryDAO;
+    private String medicineName, email, priceRange;
     private FirebaseFirestore database;
 
     @Override
@@ -62,37 +63,22 @@ public class CreateMedicineActivity extends AppCompatActivity {
         minPriceET = findViewById(R.id.medicineMinPriceET);
         maxPriceET = findViewById(R.id.medicineMaxPriceET);
         medicineDoseET = findViewById(R.id.medicineDoseET);
-        /*medicineIV = findViewById(R.id.medicineIV);
-        medicineIV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                importImage();
-            }
-        });*/
-        clearTV = findViewById(R.id.clearTV);
-        /*clearTV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                clearImage();
-            }
-        });*/
         errorTV = findViewById(R.id.errorTV);
     }
     private void setUserData(){
         sharedPreferences = getSharedPreferences(StaticClass.SHARED_PREFERENCES, MODE_PRIVATE);
-        /*String photoUri = sharedPreferences.getString(StaticClass.PHOTO, "");
+        String photoUri = sharedPreferences.getString(StaticClass.PHOTO, "");
         if(!photoUri.isEmpty()){
             Bitmap imageBitmap = null;
             try {
                 imageBitmap = MediaStore.Images.Media.getBitmap(
-                        context.getContentResolver(), Uri.parse(photoUri));
+                        getContentResolver(), Uri.parse(photoUri));
             } catch (IOException e) {
-                Toast.makeText(context, "IO Exception",
+                Toast.makeText(getApplicationContext(), "IO Exception",
                         Toast.LENGTH_LONG).show();
             }
             photoIV.setImageBitmap(imageBitmap);
         }
-         */
         usernameTV.setText(sharedPreferences.getString(StaticClass.NAME, "no name"));
         emailTV.setText(sharedPreferences.getString(StaticClass.EMAIL, "no email"));
         phoneTV.setText(sharedPreferences.getString(StaticClass.PHONE, "no phone number"));
@@ -102,7 +88,7 @@ public class CreateMedicineActivity extends AppCompatActivity {
         medicine.setId(medicineName);
         medicine.setName(medicineName);
         medicine.setCreatedHistoryTime(StaticClass.getCurrentTime());
-        createdMedicineHistoryDAO = new CreatedMedicineHistoryDAO(this);
+        CreatedMedicineHistoryDAO createdMedicineHistoryDAO = new CreatedMedicineHistoryDAO(this);
         createdMedicineHistoryDAO.insertCreateMedicineHistory(medicine);
     }
     private void writeDescription(){
