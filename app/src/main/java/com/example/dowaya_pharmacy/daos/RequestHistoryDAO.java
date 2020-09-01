@@ -12,8 +12,8 @@ import java.util.ArrayList;
 
 public class RequestHistoryDAO extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "request_history_0.db";
-    private static final String REQUEST_HISTORY_TABLE_NAME = "request_history_0";
+    private static final String DATABASE_NAME = "request-history.db";
+    private static final String REQUEST_HISTORY_TABLE_NAME = "request-history";
     private static final String REQUEST_HISTORY_ID = "id";
     private static final String REQUEST_HISTORY_NAME = "name";
     private static final String REQUEST_HISTORY_TIME = "time";
@@ -51,13 +51,6 @@ public class RequestHistoryDAO extends SQLiteOpenHelper {
         return true;
     }
 
-    public void deleteRequestHistory(String id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(REQUEST_HISTORY_TABLE_NAME,
-                REQUEST_HISTORY_ID +" = ? ",
-                new String[] {id});
-    }
-
     public ArrayList<Medicine> getAllRequestHistory() {
         ArrayList<Medicine> medicineList = new ArrayList<>();
 
@@ -76,13 +69,4 @@ public class RequestHistoryDAO extends SQLiteOpenHelper {
         }
         return medicineList;
     }
-
-    
-    
-    public int numberOfRows(){
-        SQLiteDatabase db = this.getReadableDatabase();
-        int numRows = (int) DatabaseUtils.queryNumEntries(db, REQUEST_HISTORY_TABLE_NAME);
-        return numRows;
-    }
-    
 }

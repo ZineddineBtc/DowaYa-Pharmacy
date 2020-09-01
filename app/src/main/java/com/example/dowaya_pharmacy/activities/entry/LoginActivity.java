@@ -2,7 +2,6 @@ package com.example.dowaya_pharmacy.activities.entry;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.dowaya_pharmacy.R;
 import com.example.dowaya_pharmacy.StaticClass;
 import com.example.dowaya_pharmacy.activities.TermsActivity;
@@ -24,7 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
@@ -66,23 +63,22 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(),
-                                    "Sign in with success",
-                                    Toast.LENGTH_SHORT).show();
                             getDataByDocument();
                         } else {
                             displayErrorTV(R.string.authentication_failed);
                         }
                     }
                 });
+        progressDialog.dismiss();
     }
 
     public void setSharedPreferences(String email, String name,
-                                     String phone, String address){
+                                     String phone, String address, String city){
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(StaticClass.NAME, name);
         editor.putString(StaticClass.PHONE, phone);
         editor.putString(StaticClass.ADDRESS, address);
+        editor.putString(StaticClass.CITY, city);
         editor.putString(StaticClass.EMAIL, email);
         editor.apply();
         progressDialog.dismiss();
@@ -103,14 +99,8 @@ public class LoginActivity extends AppCompatActivity {
                                 document.get("email").toString(),
                                 document.get("name").toString(),
                                 document.get("phone").toString(),
-                                document.get("address").toString());
-                        Toast.makeText(getApplicationContext(),
-                                "got data by doc",
-                                Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(),
-                                "No such store",
-                                Toast.LENGTH_SHORT).show();
+                                document.get("address").toString(),
+                                document.get("city").toString());
                     }
                 } else {
                     Toast.makeText(getApplicationContext(),
@@ -137,7 +127,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         }, 1500);
     }
-
     @Override
     public void onBackPressed() {
         startActivity(new Intent(getApplicationContext(), SlideshowActivity.class));

@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.dowaya_pharmacy.R;
 import com.example.dowaya_pharmacy.StaticClass;
 import com.example.dowaya_pharmacy.daos.CreatedMedicineHistoryDAO;
+import com.example.dowaya_pharmacy.models.Medicine;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,9 +39,9 @@ public class CreateMedicineActivity extends AppCompatActivity {
     private ImageView photoIV, medicineIV;
     private TextView usernameTV, emailTV, phoneTV, clearTV, errorTV;
     private EditText medicineNameET, medicineDescriptionET,
-            medicineDoseET, medicinePriceET;
-    private String medicinePhotoString=null, medicineName, email;
-    private CreatedMedicineHistoryDAO postHistoryDAO;
+            medicineDoseET, minPriceET, maxPriceET;
+    private String medicinePhotoString=null, medicineName, email, priceRange;
+    private CreatedMedicineHistoryDAO createdMedicineHistoryDAO;
     private FirebaseFirestore database;
 
     @Override
@@ -58,7 +59,8 @@ public class CreateMedicineActivity extends AppCompatActivity {
         phoneTV = findViewById(R.id.phoneTV);
         medicineNameET = findViewById(R.id.medicineNameET);
         medicineDescriptionET = findViewById(R.id.medicineDescriptionET);
-        medicinePriceET = findViewById(R.id.medicinePriceET);
+        minPriceET = findViewById(R.id.medicineMinPriceET);
+        maxPriceET = findViewById(R.id.medicineMaxPriceET);
         medicineDoseET = findViewById(R.id.medicineDoseET);
         /*medicineIV = findViewById(R.id.medicineIV);
         medicineIV.setOnClickListener(new View.OnClickListener() {
@@ -95,11 +97,19 @@ public class CreateMedicineActivity extends AppCompatActivity {
         emailTV.setText(sharedPreferences.getString(StaticClass.EMAIL, "no email"));
         phoneTV.setText(sharedPreferences.getString(StaticClass.PHONE, "no phone number"));
     }
+    private void writeCreatedMedicineHistory(){
+        Medicine medicine = new Medicine();
+        medicine.setId(medicineName);
+        medicine.setName(medicineName);
+        medicine.setCreatedHistoryTime(StaticClass.getCurrentTime());
+        createdMedicineHistoryDAO = new CreatedMedicineHistoryDAO(this);
+        createdMedicineHistoryDAO.insertCreateMedicineHistory(medicine);
+    }
     private void writeDescription(){
         Map<String, Object> medicineDescription = new HashMap<>();
         medicineDescription.put("name", medicineName);
         medicineDescription.put("description", medicineDescriptionET.getText().toString());
-        medicineDescription.put("price", medicinePriceET.getText().toString());
+        medicineDescription.put("price", priceRange);
         medicineDescription.put("dose", medicineDoseET.getText().toString());
 
         database.collection("medicines-descriptions")
@@ -108,9 +118,6 @@ public class CreateMedicineActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(getApplicationContext(),
-                                "description successfully written!",
-                                Toast.LENGTH_SHORT).show();
                         writeName();
                     }
                 })
@@ -132,11 +139,7 @@ public class CreateMedicineActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(getApplicationContext(),
-                                "name successfully written!",
-                                Toast.LENGTH_SHORT).show();
                         writeMedicineStore();
-
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -162,9 +165,6 @@ public class CreateMedicineActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(getApplicationContext(),
-                                "medicine store successfully written!",
-                                Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(), CoreActivity.class));
                     }
                 })
@@ -187,11 +187,7 @@ public class CreateMedicineActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()) {
                             DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                Toast.makeText(getApplicationContext(),
-                                        "name already exists",
-                                        Toast.LENGTH_SHORT).show();
-                            } else {
+                            if (!document.exists()) {
                                 writeDescription();
                             }
                         } else {
@@ -206,9 +202,15 @@ public class CreateMedicineActivity extends AppCompatActivity {
     private void create(){
         email = sharedPreferences.getString(StaticClass.EMAIL, "");
         String temp = medicineNameET.getText().toString().trim().toLowerCase();
-        medicineName = temp.substring(0, 1).toUpperCase() + temp.substring(1);
+        if(temp.length()>2){
+            medicineName = temp.substring(0, 1).toUpperCase() + temp.substring(1);
+        }else{
+            medicineName = "";
+        }
+        priceRange = minPriceET.getText().toString().trim()+"-"+maxPriceET.getText().toString().trim()+" DA";
         if(!medicineNameET.getText().toString().isEmpty()
                 && !medicineDescriptionET.getText().toString().isEmpty()){
+            writeCreatedMedicineHistory();
             uploadMedicine();
         }else{
             errorTV.setVisibility(View.VISIBLE);
@@ -234,7 +236,6 @@ public class CreateMedicineActivity extends AppCompatActivity {
         }
         return false;
     }
-
 }
 
 

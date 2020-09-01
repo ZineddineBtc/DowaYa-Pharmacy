@@ -2,7 +2,6 @@ package com.example.dowaya_pharmacy.activities.entry;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +9,6 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.dowaya_pharmacy.R;
 import com.example.dowaya_pharmacy.StaticClass;
 import com.example.dowaya_pharmacy.activities.TermsActivity;
@@ -19,7 +16,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
 import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -68,9 +64,6 @@ public class SignUpActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(),
-                                    "User created",
-                                    Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),
                                     FinishSignUpActivity.class));
                         } else {
@@ -80,15 +73,12 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 });
     }
-
     public void toLogin(View view){
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
     }
-
     public void toTermsAndConditions(View view){
         startActivity(new Intent(getApplicationContext(), TermsActivity.class));
     }
-
     public void displayErrorTV(int resourceID){
         errorTV.setText(resourceID);
         errorTV.setVisibility(View.VISIBLE);

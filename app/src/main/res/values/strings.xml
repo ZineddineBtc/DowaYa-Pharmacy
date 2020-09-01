@@ -73,7 +73,7 @@
     <string name="city">City</string>
     <string name="optional_description">Optional description</string>
     <string name="error_empty_name_city">A name and a city are mandatory</string>
-    <string name="addess_unspecified">Unspecified Address</string>
+    <string name="address_unspecified">Unspecified Address</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="menu_tools">Tools</string>
@@ -85,6 +85,16 @@
     <string name="check">Check</string>
     <string name="create_account_signin">Sign in or create an account now!</string>
     <string name="next">next</string>
-    <string name="from">From</string>
+    <string name="from">from</string>
     <string name="team_name">Monks</string>
+    <string name="name_phone_address">Name, phone, and address</string>
+    <string name="name_unspecified">Name must be specified</string>
+    <string name="city_unspecified">City must be specified</string>
+    <string name="min_price">Min Price</string>
+    <string name="max_price">Max Price</string>
+    <string name="optional_image">Image (optional)</string>
+    <string name="menu_my_activities">My Activities</string>
+    <string name="created">Created</string>
+    <string name="created_medicine">Created Medicines</string>
+    <string name="random_price_range">220-240 DA</string>
 </resources>

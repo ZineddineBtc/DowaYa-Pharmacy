@@ -1,7 +1,6 @@
 package com.example.dowaya_pharmacy.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,21 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dowaya_pharmacy.R;
-import com.example.dowaya_pharmacy.StaticClass;
-import com.example.dowaya_pharmacy.activities.core.RequestDescriptionActivity;
 import com.example.dowaya_pharmacy.models.Medicine;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.dowaya_pharmacy.StaticClass.medicineList;
 
 public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHolder> {
 
@@ -155,13 +147,13 @@ public class MedicineAdapter extends RecyclerView.Adapter<MedicineAdapter.ViewHo
         void onItemClick(View view, int position);
     }
     public void filter(String queryText) {
-        medicineList.clear();
+        list.clear();
         if(queryText.isEmpty()) {
-            medicineList.addAll(copyList);
+            list.addAll(copyList);
         }else{
             for(Medicine medicine: copyList) {
                 if(medicine.getName().toLowerCase().contains(queryText.toLowerCase())) {
-                    medicineList.add(medicine);
+                    list.add(medicine);
                 }
             }
         }

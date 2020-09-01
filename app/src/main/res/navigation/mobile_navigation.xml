@@ -24,10 +24,10 @@
         tools:layout="@layout/fragment_slideshow" />
 
     <fragment
-        android:id="@+id/nav_history"
-        android:name="com.example.dowaya_pharmacy.activities.core.fragments.HistoryFragment"
-        android:label="@string/menu_history"
-        tools:layout="@layout/fragment_history" />
+        android:id="@+id/nav_my_activities"
+        android:name="com.example.dowaya_pharmacy.activities.core.fragments.MyActivitiesFragment"
+        android:label="@string/menu_my_activities"
+        tools:layout="@layout/fragment_my_activites" />
 
     <fragment
         android:id="@+id/nav_orientation"

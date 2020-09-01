@@ -59,9 +59,7 @@ public class LogoActivity extends AppCompatActivity {
 
                         } else {
                             startActivity(new Intent(getApplicationContext(), FinishSignUpActivity.class));
-                            Toast.makeText(getApplicationContext(),
-                                    "store does not exist",
-                                    Toast.LENGTH_SHORT).show();
+
                         }
                     } else {
                         Toast.makeText(getApplicationContext(),

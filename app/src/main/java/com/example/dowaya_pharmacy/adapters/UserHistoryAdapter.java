@@ -1,18 +1,12 @@
 package com.example.dowaya_pharmacy.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.dowaya_pharmacy.R;
-import com.example.dowaya_pharmacy.StaticClass;
-import com.example.dowaya_pharmacy.activities.core.RequestDescriptionActivity;
-import com.example.dowaya_pharmacy.models.Medicine;
 import com.example.dowaya_pharmacy.models.User;
 
 import java.util.List;
@@ -22,12 +16,10 @@ public class UserHistoryAdapter extends RecyclerView.Adapter<UserHistoryAdapter.
     private List<User> list;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
-    Context context;
 
     public UserHistoryAdapter(Context context, List<User> list) {
         this.mInflater = LayoutInflater.from(context);
         this.list = list;
-        this.context = context;
     }
 
     @Override

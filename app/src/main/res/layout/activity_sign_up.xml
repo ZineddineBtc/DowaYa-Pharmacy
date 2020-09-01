@@ -8,6 +8,7 @@
     android:background="@drawable/white_background_rounded_border">
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/errorTV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

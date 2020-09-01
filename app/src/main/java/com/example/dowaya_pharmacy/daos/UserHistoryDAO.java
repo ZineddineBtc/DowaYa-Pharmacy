@@ -6,16 +6,14 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import com.example.dowaya_pharmacy.models.Medicine;
 import com.example.dowaya_pharmacy.models.User;
 
 import java.util.ArrayList;
 
 public class UserHistoryDAO extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "user_history_0.db";
-    private static final String USER_HISTORY_TABLE_NAME = "user_history_0";
+    private static final String DATABASE_NAME = "user-history.db";
+    private static final String USER_HISTORY_TABLE_NAME = "user-history";
     private static final String USER_HISTORY_ID = "id";
     private static final String USER_HISTORY_NAME = "name";
     private static final String USER_HISTORY_TIME = "time";
@@ -52,14 +50,6 @@ public class UserHistoryDAO extends SQLiteOpenHelper {
         db.insert(USER_HISTORY_TABLE_NAME, null, contentValues);
         return true;
     }
-
-    public void deleteUserHistory(String id) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(USER_HISTORY_TABLE_NAME,
-                USER_HISTORY_ID +" = ? ",
-                new String[] {id});
-    }
-
     public ArrayList<User> getAllUserHistory() {
         ArrayList<User> userList = new ArrayList<>();
 
@@ -78,13 +68,4 @@ public class UserHistoryDAO extends SQLiteOpenHelper {
         }
         return userList;
     }
-
-    
-    
-    public int numberOfRows(){
-        SQLiteDatabase db = this.getReadableDatabase();
-        int numRows = (int) DatabaseUtils.queryNumEntries(db, USER_HISTORY_TABLE_NAME);
-        return numRows;
-    }
-    
 }

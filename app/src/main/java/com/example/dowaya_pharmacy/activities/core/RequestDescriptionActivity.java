@@ -10,9 +10,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -78,7 +75,7 @@ public class RequestDescriptionActivity extends AppCompatActivity {
         usernameTV = findViewById(R.id.usernameTV);
         emailTV = findViewById(R.id.emailTV);
         phoneTV = findViewById(R.id.phoneTV);
-        addressTV = findViewById(R.id.addressTV);
+        addressTV = findViewById(R.id.addressCityTV);
     }
     public void toggleInfo(View view){
         toggleableLL.setVisibility(medicineDescriptionShown ? View.GONE : View.VISIBLE);
@@ -104,11 +101,6 @@ public class RequestDescriptionActivity extends AppCompatActivity {
                         referenceList = (ArrayList<DocumentReference>)
                                 document.get("requesters");
                         getRequesters();
-                    } else {
-                        Toast.makeText(getApplicationContext(),
-                                "No such document",
-                                Toast.LENGTH_SHORT).show();
-                        //Log.d(TAG, "No such document");
                     }
                 } else {
                     Toast.makeText(getApplicationContext(),
@@ -133,14 +125,9 @@ public class RequestDescriptionActivity extends AppCompatActivity {
                             user.setPhone(document.get("phone").toString());
                             user.setAddress(document.get("address").toString());
                             user.setCity(document.get("city").toString());
-                            nameList.add(user.getUsername()+" "+user.getCity());
+                            nameList.add(user.getUsername() + " " + user.getCity());
                             userList.add(user);
                             adapter.notifyDataSetChanged();
-                        } else {
-                            Toast.makeText(getApplicationContext(),
-                                    "No such document",
-                                    Toast.LENGTH_SHORT).show();
-                            //Log.d(TAG, "No such document");
                         }
                     } else {
                         Toast.makeText(getApplicationContext(),

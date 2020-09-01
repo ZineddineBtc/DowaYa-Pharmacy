@@ -2,7 +2,7 @@ package com.example.dowaya_pharmacy.models;
 
 public class Medicine {
     private String id, name, dose, photo, priceRange, description,
-            searchHistoryTime, requestTime, postTime, postAddress;
+            searchHistoryTime, createdHistoryTime;
     private boolean isAvailable;
 
     public Medicine(){}
@@ -80,28 +80,16 @@ public class Medicine {
         this.searchHistoryTime = searchHistoryTime;
     }
 
-    public String getRequestTime() {
-        return requestTime;
+    public void setPriceRange(String priceRange) {
+        this.priceRange = priceRange;
     }
 
-    public void setRequestTime(String requestTime) {
-        this.requestTime = requestTime;
+    public String getCreatedHistoryTime() {
+        return createdHistoryTime;
     }
 
-    public String getPostTime() {
-        return postTime;
-    }
-
-    public void setPostTime(String postTime) {
-        this.postTime = postTime;
-    }
-
-    public String getPostAddress() {
-        return postAddress;
-    }
-
-    public void setPostAddress(String postAddress) {
-        this.postAddress = postAddress;
+    public void setCreatedHistoryTime(String createdHistoryTime) {
+        this.createdHistoryTime = createdHistoryTime;
     }
 
     public String getDose() {

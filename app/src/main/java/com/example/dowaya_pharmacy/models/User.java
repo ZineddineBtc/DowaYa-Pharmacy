@@ -7,12 +7,6 @@ public class User {
 
     public User(){}
 
-    public User(String username, String email, String phone) {
-        this.username = username;
-        this.email = email;
-        this.phone = phone;
-    }
-
     public String getSearchHistoryTime() {
         return searchHistoryTime;
     }
