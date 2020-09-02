@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,7 +39,7 @@ public class SettingsFragment extends Fragment {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private LinearLayout addressCityLL;
-    private TextView nameTV, emailTV, phoneTV, addressCityTV, signOutTV, termsTV;
+    private TextView nameTV, emailTV, phoneTV, addressCityTV, signOutTV, termsTV, errorTV;
     private EditText nameET, phoneET, addressET, cityET;
     private ImageView photoIV, editNameIV, editPhoneIV, editAddressCityIV;
     private boolean isNameEdit, isPhoneEdit, isAddressEdit, imageChanged;
@@ -73,6 +74,7 @@ public class SettingsFragment extends Fragment {
         editAddressCityIV = fragmentView.findViewById(R.id.editAddressIV);
         signOutTV = fragmentView.findViewById(R.id.signOutTV);
         termsTV = fragmentView.findViewById(R.id.termsTV);
+        errorTV = fragmentView.findViewById(R.id.errorTV);
     }
     private void initializeData(){
         if(!sharedPreferences.getString(StaticClass.PHOTO, "").isEmpty()){
@@ -207,22 +209,58 @@ public class SettingsFragment extends Fragment {
         Map<String, Object> userReference = new HashMap<>();
         if(!nameET.getText().toString().equals(
                 sharedPreferences.getString(StaticClass.NAME, ""))){
-            editor.putString(StaticClass.NAME, nameET.getText().toString());
-            userReference.put("name", nameET.getText().toString());
+            if(isValidInput()){
+                editor.putString(StaticClass.NAME, nameET.getText().toString());
+                userReference.put("name", nameET.getText().toString());
+            }else{
+                errorTV.setVisibility(View.VISIBLE);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        errorTV.setVisibility(View.GONE);
+                    }
+                }, 1500);
+                return;
+            }
         }
         if(!phoneET.getText().toString().equals(
                 sharedPreferences.getString(StaticClass.PHONE, ""))){
-            editor.putString(StaticClass.PHONE, phoneET.getText().toString());
-            userReference.put("phone", phoneET.getText().toString());
+            if(isValidInput()){
+                editor.putString(StaticClass.PHONE, phoneET.getText().toString());
+                userReference.put("phone", phoneET.getText().toString());
+            }else{
+                errorTV.setVisibility(View.VISIBLE);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        errorTV.setVisibility(View.GONE);
+                    }
+                }, 1500);
+                return;
+            }
         }
         if(!addressET.getText().toString().equals(
                 sharedPreferences.getString(StaticClass.ADDRESS, ""))
         || !cityET.getText().toString().equals(
                         sharedPreferences.getString(StaticClass.ADDRESS, ""))){
-            editor.putString(StaticClass.ADDRESS, addressET.getText().toString());
-            editor.putString(StaticClass.CITY, addressET.getText().toString());
-            userReference.put("address", addressET.getText().toString());
-            userReference.put("city", cityET.getText().toString());
+            if(isValidInput()){
+                editor.putString(StaticClass.ADDRESS, addressET.getText().toString());
+                editor.putString(StaticClass.CITY, addressET.getText().toString());
+                userReference.put("address", addressET.getText().toString());
+                userReference.put("city", cityET.getText().toString());
+            }else{
+                errorTV.setVisibility(View.VISIBLE);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        errorTV.setVisibility(View.GONE);
+                    }
+                }, 1500);
+                return;
+            }
         }
         if(imageChanged){
             editor.putString(StaticClass.PHOTO, String.valueOf(uriString));
@@ -233,21 +271,21 @@ public class SettingsFragment extends Fragment {
     }
     private boolean isValidInput(){
         return !StaticClass.containsDigit(nameET.getText().toString())
+                && nameET.getText().toString().length() > 2
                 && phoneET.getText().toString().length() > 9
-                && !addressET.getText().toString().isEmpty();
+                && !addressET.getText().toString().isEmpty()
+                && cityET.getText().toString().length() > 2;
     }
     private void updateData(){
         detectChange();
-        String snackBarString;
-        if(isValidInput()){
+        if(isValidInput()) {
             editor.apply();
             initializeData();
-            snackBarString = "updated";
-        }else{
-            snackBarString = "invalid input";
+            Snackbar.make(fragmentView.findViewById(R.id.parentLayout),
+                    "updated", 1000)
+                    .setAction("Action", null).show();
         }
-        Snackbar.make(fragmentView.findViewById(R.id.parentLayout),
-                snackBarString, 1000)
-                .setAction("Action", null).show();
+
     }
+
 }

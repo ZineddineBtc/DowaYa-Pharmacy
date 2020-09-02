@@ -105,4 +105,5 @@
     <string name="how_to_reach_requesters">How to reach requesters?</string>
     <string name="how_to_set_provided_medicine_list">How to set provided medicine list?</string>
     <string name="how_to_delete_created_medicine">How to delete created medicine?</string>
+    <string name="invalid_input">Invalid input</string>
 </resources>
